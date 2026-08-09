@@ -39,7 +39,7 @@ func hit(tool: Enum.Tool):
 	if tool == Enum.Tool.AXE:
 		$FlashTree.flash()
 		getApple()
-		treeHP -= 1
+		#treeHP -= 1
 		
 
 #This function controls the number of apple, texture and location generated
