@@ -6,7 +6,7 @@ var direction: Vector2
 #will be removed if character moves but lastDirection is saved direction of the player
 var lastDirection: Vector2
 #so this the speed of direction the character is moving by default it's 50
-var speed = 200
+var speed = 125
 #To avoid that stupid animation and movement that looks goofy, we are adding delay in movement
 var canMove: bool = true
 

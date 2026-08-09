@@ -1,3 +1,110 @@
 [gd_scene format=3 uid="uid://c1ngrhhxby0j6"]
 
-[node name="Blob" type="CharacterBody2D" unique_id=871202714]
+[ext_resource type="Texture2D" uid="uid://b466fqj7w4mne" path="res://graphics/characters/blob.png" id="1_0f0qs"]
+[ext_resource type="Script" uid="uid://djjp8pjey2o2" path="res://scenes/objects/blob.gd" id="1_hu4wv"]
+[ext_resource type="PackedScene" uid="uid://b7ed5eo062sg0" path="res://scenes/vfx/flash_apple.tscn" id="2_3y2e6"]
+[ext_resource type="Shader" uid="uid://b6nm5dtkeitqy" path="res://shaders/flash.tres" id="3_eba5w"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_3y2e6"]
+resource_local_to_scene = true
+shader = ExtResource("3_eba5w")
+shader_parameter/ColorParameter = Color(1, 1, 1, 1)
+shader_parameter/Progress = 0.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_s8wq0"]
+radius = 5.0
+
+[sub_resource type="Animation" id="Animation_ckn0h"]
+resource_name = "DEATH"
+length = 0.8
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("FlashSprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [10, 11, 12, 13]
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.8),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"queue_free"
+}]
+}
+
+[sub_resource type="Animation" id="Animation_pixkw"]
+resource_name = "Idle"
+length = 0.8
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("FlashSprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3]
+}
+
+[sub_resource type="Animation" id="Animation_vg2cp"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("FlashSprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_ckn0h"]
+_data = {
+&"DEATH": SubResource("Animation_ckn0h"),
+&"Idle": SubResource("Animation_pixkw"),
+&"RESET": SubResource("Animation_vg2cp")
+}
+
+[sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_s8wq0"]
+graph_offset = Vector2(0, -193.2)
+
+[node name="Blob" type="CharacterBody2D" unique_id=871202714 groups=["Objects"]]
+collision_layer = 4
+script = ExtResource("1_hu4wv")
+
+[node name="FlashSprite2D" parent="." unique_id=2143689914 instance=ExtResource("2_3y2e6")]
+material = SubResource("ShaderMaterial_3y2e6")
+texture = ExtResource("1_0f0qs")
+hframes = 14
+vframes = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=121775598]
+position = Vector2(0.5, 2)
+shape = SubResource("CircleShape2D_s8wq0")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=429756350]
+libraries/ = SubResource("AnimationLibrary_ckn0h")
+autoplay = &"Idle"
+
+[node name="AnimationTree" type="AnimationTree" parent="." unique_id=1029374981]
+tree_root = SubResource("AnimationNodeBlendTree_s8wq0")
+anim_player = NodePath("../AnimationPlayer")
