@@ -7,6 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://cpjr8yl2yentc" path="res://graphics/tilesets/soil.png" id="2_xb4v1"]
 [ext_resource type="Texture2D" uid="uid://vrdy2gp08qay" path="res://graphics/tilesets/soil_water.png" id="5_d4w6o"]
 [ext_resource type="Texture2D" uid="uid://cwbhys0nypuq" path="res://graphics/tilesets/roof.png" id="6_mbbpy"]
+[ext_resource type="Script" uid="uid://dg4o1jmv5g80v" path="res://scenes/levels/hit_marker.gd" id="7_rmjfq"]
 [ext_resource type="PackedScene" uid="uid://d2530w2lrixv4" path="res://scenes/objects/tree.tscn" id="8_ouxo3"]
 [ext_resource type="PackedScene" uid="uid://c1ngrhhxby0j6" path="res://scenes/objects/blob.tscn" id="9_icy5c"]
 
@@ -1286,6 +1287,9 @@ tile_set = SubResource("TileSet_vsb7g")
 [node name="DebugLayer" type="TileMapLayer" parent="Layers" unique_id=1656514630]
 tile_set = SubResource("TileSet_hdju5")
 
+[node name="HitMarker" type="Node2D" parent="Layers" unique_id=519893571]
+script = ExtResource("7_rmjfq")
+
 [node name="Objects" type="Node2D" parent="." unique_id=298865635]
 y_sort_enabled = true
 
@@ -1296,6 +1300,6 @@ position = Vector2(186, 342)
 position = Vector2(100, 333)
 
 [node name="Blob" parent="Objects" unique_id=871202714 instance=ExtResource("9_icy5c")]
-position = Vector2(288, 276)
+position = Vector2(445, 253)
 
 [connection signal="tool_use" from="Objects/Player" to="." method="_on_player_tool_use"]

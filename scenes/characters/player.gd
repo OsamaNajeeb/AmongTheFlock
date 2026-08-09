@@ -119,7 +119,10 @@ func tool_use_emit():
 	#Also the reason we put tool_use here it's because if you open Animation, see the frames,
 	#there is function row, it has tool_use_emit func, this we don't have to add stupid delay / timer
 	#to deploy or apply action, you easily adjust through frames, which ain't bad idea.
-	tool_use.emit(currentTool, position + lastDirection * 16 + Vector2(0,4))
+	if currentTool == Enum.Tool.SWORD or currentTool == Enum.Tool.AXE:
+		tool_use.emit(currentTool, position + lastDirection * 8 + Vector2(0,4))
+	else:
+		tool_use.emit(currentTool, position + lastDirection * 16 + Vector2(0,4))
 	#if currentTool == Enum.Tool.FISH:
 		#tool_use.emit(currentTool, position + lastDirection * 32 + Vector2(0,4))
 	#else:

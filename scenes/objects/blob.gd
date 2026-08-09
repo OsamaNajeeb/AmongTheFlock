@@ -2,8 +2,8 @@ extends CharacterBody2D
 
 var direction: Vector2
 var moveSpeed: float = 40.0
-var stopDistance: float = 10.0
-var noticeDistance: float = 20 #orignal is 150
+var stopDistance: float = 10
+var noticeDistance: float = 60 #orignal is 150
 var blobHP := 3:
 	set(value):
 		blobHP = value
@@ -13,7 +13,9 @@ var blobHP := 3:
 		if blobHP <= 0:
 			#print("ded")
 			death()
-			
+
+@onready var movestatemachine = $AnimationTree.get("parameters/MoveStateMachine/playback")
+
 var knockBack: Vector2 = Vector2.ZERO
 var targetPlayer: Node2D = null
 
@@ -29,12 +31,21 @@ func _physics_process(_delta: float) -> void:
 				direction = global_position.direction_to(targetPlayer.global_position)
 				velocity = direction * moveSpeed
 			else:
-				direction = Vector2.ZERO
 				velocity = Vector2.ZERO
 		else:
 			velocity = knockBack
 		move_and_slide()
+		animate()
 
+func animate():
+	var directionAn = Vector2(round(direction.x),round(direction.y))
+	$AnimationTree.set("parameters/MoveStateMachine/Idle/blend_position", directionAn)
+	$AnimationTree.set("parameters/MoveStateMachine/Walk/blend_position", directionAn)
+	if velocity != Vector2.ZERO:
+		movestatemachine.travel('Walk')
+	else:
+		movestatemachine.travel('Idle')
+	
 func death():
 	moveSpeed = 0
 	$AnimationPlayer.current_animation = 'DEATH'
@@ -45,4 +56,4 @@ func hit(tool: Enum.Tool):
 			var pushDirection = targetPlayer.global_position.direction_to(global_position)
 			knockBack = pushDirection * 200.0
 			$FlashSprite2D.flash()
-			blobHP -= 1
+			#blobHP -= 1
