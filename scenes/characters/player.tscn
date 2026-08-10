@@ -1595,6 +1595,8 @@ zoom = Vector2(4, 4)
 
 [node name="ToolUi" parent="." unique_id=404463111 instance=ExtResource("3_76oj4")]
 anchors_preset = 8
+offset_top = -7.5
+offset_bottom = 7.5
 
 [connection signal="animation_finished" from="Animation/AnimationTree" to="." method="_on_animation_tree_animation_finished"]
 [connection signal="animation_started" from="Animation/AnimationTree" to="." method="_on_animation_tree_animation_started"]
