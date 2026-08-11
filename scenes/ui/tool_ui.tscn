@@ -4,6 +4,7 @@
 
 [node name="ToolUi" type="Control" unique_id=404463111]
 layout_mode = 3
+anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
@@ -23,10 +24,7 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -50.0
-offset_top = -30.0
-offset_right = 50.0
-offset_bottom = -10.0
+offset_bottom = -50.0
 grow_horizontal = 2
 grow_vertical = 2
 
