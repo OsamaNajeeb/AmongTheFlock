@@ -57,7 +57,7 @@ func getbasicinput():
 		#It then converts -1 to 5 because it's like element it start from 0 to 5, this way
 		#Your code works smoothly
 		currentTool = posmod(currentTool + int(dir), Enum.Tool.size()) as Enum.Tool
-		print(currentTool)
+		$ToolUi.reveal()
 		
 	if Input.is_action_just_pressed("seed_forward") and currentTool == Enum.Tool.SEED:
 		currentSeed = posmod(currentSeed + 1, Enum.Seed.size()) as Enum.Seed
@@ -75,7 +75,6 @@ func getbasicinput():
 		#Once pressed, then it calls the ToolOneShot Oneshot manager
 		$Animation/AnimationTree.set("parameters/ToolOneShot/request", AnimationNodeOneShot.ONE_SHOT_REQUEST_FIRE)
 		
-
 
 func move():
 	#Negative X (Left), Postive X (Right), Negative Y (Up) and Positive Y (Down)
