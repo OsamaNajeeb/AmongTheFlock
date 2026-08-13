@@ -10,6 +10,7 @@
 [ext_resource type="Script" uid="uid://dg4o1jmv5g80v" path="res://scenes/levels/hit_marker.gd" id="7_rmjfq"]
 [ext_resource type="PackedScene" uid="uid://d2530w2lrixv4" path="res://scenes/objects/tree.tscn" id="8_ouxo3"]
 [ext_resource type="PackedScene" uid="uid://c1ngrhhxby0j6" path="res://scenes/objects/blob.tscn" id="9_icy5c"]
+[ext_resource type="PackedScene" uid="uid://bqslqtiln4d41" path="res://scenes/objects/simple_objects.tscn" id="11_7pb6i"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_d4w6o"]
 texture = ExtResource("1_xb4v1")
@@ -1301,5 +1302,10 @@ position = Vector2(100, 333)
 
 [node name="Blob" parent="Objects" unique_id=871202714 instance=ExtResource("9_icy5c")]
 position = Vector2(470, 270)
+
+[node name="SimpleObjects" parent="Objects" unique_id=1370482860 instance=ExtResource("11_7pb6i")]
+position = Vector2(139, 305)
+size = 3
+style = 1
 
 [connection signal="tool_use" from="Objects/Player" to="." method="_on_player_tool_use"]

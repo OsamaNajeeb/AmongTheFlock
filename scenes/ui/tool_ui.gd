@@ -19,7 +19,7 @@ const SEED_TEXTURES = {
 	}
 
 #now We want to call a another smaller UI container which will allow us to add this
-#icon to fit in
+#icon to fit in.
 var toolTextureScene = preload('res://scenes/ui/tool_ui_texture.tscn')
 
 
@@ -60,7 +60,6 @@ func reveal(tool: bool):
 	#If you open the player.gd, you will see:
 			#{currentTool = posmod(currentTool + int(dir), Enum.Tool.size()) as Enum.Tool
 			#$ToolUi.reveal(true)
-			#
 		#if Input.is_action_just_pressed("seed_forward") and currentTool == Enum.Tool.SEED:
 			#currentSeed = posmod(currentSeed + 1, Enum.Seed.size()) as Enum.Seed
 			#$ToolUi.reveal(false)}
@@ -74,6 +73,7 @@ func reveal(tool: bool):
 	$SeedContainer.hide()
 	currentContainer.show()
 	
+	#This code tells the Construction Company what to highlight o algo
 	for texture in currentContainer.get_children():
 		texture.highlight(target == texture.tool_enum)
 	
