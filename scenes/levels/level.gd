@@ -3,6 +3,8 @@ extends Node2D
 var debugHitPos: Vector2
 var debugHitRadius: float = 0.0
 var showDebugHit: bool = false
+@onready var daytransitionMaterial = $Overlay/CanvasLayer/DayTransitionLayer.material
+@export var daytime_color: Gradient
 
 #We used preload because we need to store the plant in memory so that it
 #doesn't drop fps when we need to plant see as the Game will try to load
@@ -35,6 +37,13 @@ func _physics_process(_delta: float) -> void:
 	#cluster fuck the game it's going to create trails of roof if you don't add this
 	$Layers/DebugLayer.clear()
 	$Layers/DebugLayer.set_cell(grid_coord,0, Vector2i(1,3))
+	
+	var daytime_point = 1 - ($Timers/DayTime.time_left / $Timers/DayTime.wait_time)
+	var color = daytime_color.sample(daytime_point)
+	$Overlay/DayTimeColor.color = color
+	
+	if Input.is_action_just_pressed("day_change"):
+		dayRestart()
 
 #func _draw():
 	#if showDebugHit:
@@ -119,3 +128,13 @@ func _on_player_tool_use(tool: Enum.Tool, pos: Vector2) -> void:
 			await get_tree().create_timer(0.3).timeout
 			$Layers/HitMarker.radius = 0.0
 			$Layers/HitMarker.queue_redraw()
+			
+func dayRestart():
+	var tween = create_tween()
+	tween.tween_property(daytransitionMaterial, "shader_parameter/progress", 1.0, 1.0)
+	tween.tween_interval(0.5)
+	tween.tween_callback(levelReset)
+	tween.tween_property(daytransitionMaterial, "shader_parameter/progress", 0.0, 1.0)
+
+func levelReset():
+	$Timers/DayTime.start()

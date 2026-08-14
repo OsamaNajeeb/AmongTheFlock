@@ -1,7 +1,6 @@
 @tool
 extends StaticBody2D
 
-#Ok gemini the code is working but how does Godot knows that it
 @export var randomBool : bool = true
 
 @export_range(0,3,1) var size: int:
