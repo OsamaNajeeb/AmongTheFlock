@@ -4,6 +4,8 @@ var debugHitPos: Vector2
 var debugHitRadius: float = 0.0
 var showDebugHit: bool = false
 @onready var daytransitionMaterial = $Overlay/CanvasLayer/DayTransitionLayer.material
+#So we added Day & Night effect in our game with help of gradient
+#if you Level node, you can see the gradient and make some adjustment
 @export var daytime_color: Gradient
 
 #We used preload because we need to store the plant in memory so that it
@@ -38,12 +40,21 @@ func _physics_process(_delta: float) -> void:
 	$Layers/DebugLayer.clear()
 	$Layers/DebugLayer.set_cell(grid_coord,0, Vector2i(1,3))
 	
+	#This is part of the gradient, so in order to change the gradient 
+	#it has read from 0 to 1 or 1 to 0 so that it is consistent.
 	var daytime_point = 1 - ($Timers/DayTime.time_left / $Timers/DayTime.wait_time)
+	#we used sample instead of get_color because get color needs specific color
+	#where as sample just need 0 till 1, and it's more dynamic and it is
+	#suitable for our gradient guy
 	var color = daytime_color.sample(daytime_point)
+	#We then Update the color of the DayTimeColor with this gradient
 	$Overlay/DayTimeColor.color = color
 	
+	#if the tab is pressed then call levelReset(), CTRL + LC on 
+	#levelReset()
 	if Input.is_action_just_pressed("day_change"):
-		dayRestart()
+		levelReset()
+		
 
 #func _draw():
 	#if showDebugHit:
@@ -129,6 +140,7 @@ func _on_player_tool_use(tool: Enum.Tool, pos: Vector2) -> void:
 			$Layers/HitMarker.radius = 0.0
 			$Layers/HitMarker.queue_redraw()
 			
+#For now we are not focusing on KOOOL transition because I didn't ask
 func dayRestart():
 	var tween = create_tween()
 	tween.tween_property(daytransitionMaterial, "shader_parameter/progress", 1.0, 1.0)
@@ -136,5 +148,17 @@ func dayRestart():
 	tween.tween_callback(levelReset)
 	tween.tween_property(daytransitionMaterial, "shader_parameter/progress", 0.0, 1.0)
 
+#This function reset the gradient color by resetting the time.
 func levelReset():
 	$Timers/DayTime.start()
+	#This is super heckin important saar, so for my understanding, this line of code uses
+	#this new concept called duck typing which means if that little shit walks like duck, quacks
+	#like duck and shit like duck then it is duck for some reason
+	#So first we get tree which means every FUCKING NODES in the on your
+	#left screen if you open SCENE section next to Import, then it looks for
+	#nodes which in this case the Objects, once we done that
+	#it ask every damn gd in that node if it has function called 'reset' or not
+	#once it finds it then it execute it.
+	for object in get_tree().get_nodes_in_group('Objects'):
+		if object.has_method('reset'):
+			object.reset()

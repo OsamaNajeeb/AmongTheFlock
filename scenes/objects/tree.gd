@@ -12,7 +12,7 @@ var treeHP := 3:
 		#print(value)
 		#This is the kill state, if the tree hp is below 0, then say bye
 		#to tree
-		if treeHP < 0:
+		if treeHP <= 0:
 			#print("ded")
 			$FlashTree.hide()
 			$Stump.show()
@@ -39,7 +39,7 @@ func hit(tool: Enum.Tool):
 	if tool == Enum.Tool.AXE:
 		$FlashTree.flash()
 		getApple()
-		#treeHP -= 1
+		treeHP -= 1
 		
 
 #This function controls the number of apple, texture and location generated
@@ -77,4 +77,12 @@ func getApple():
 		#Removes random apples in the Apples node
 		$Apples.get_children().pick_random().queue_free()
 		print('Apple')
+		
+#so Level.gd call this function through duck typing.
+func reset(): 
+	if treeHP > 0:
+		for apple in $Apples.get_children():
+			apple.queue_free()
+		createApples(randi_range(0,3))
+		treeHP = 3
 		
