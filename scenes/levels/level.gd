@@ -99,12 +99,14 @@ func _on_player_tool_use(tool: Enum.Tool, pos: Vector2) -> void:
 		
 		Enum.Tool.SEED:
 			if has_soil and grid_coord not in usedCells:
+				var plantRes = PlantResource.new()
+				plantRes.setup($Objects/Player.currentSeed)
 				#instantiate() is basically constructor like scene which is
 				#which is basically class, we have to build the class/scene/blueprint
 				#with help of constructor which is instantiate the construction company,
 				#the building we finished building is plant
 				var plant = plantScene.instantiate()
-				plant.setup(grid_coord,$Objects)
+				plant.setup(grid_coord,$Objects, plantRes)
 				#Append stores value at the end of the array, push_back pops the last
 				#value in the array, whereas push_front stores value in first
 				#index but I don't know if there any stupid built in command

@@ -6,11 +6,12 @@ var coord: Vector2i
 #In this function for my understanding we get the coordinates, mess around with 
 #coordinates until it becomes pixel, and make sure that whole object visually is
 #added and can be interactive as well.
-func setup(gridCoord: Vector2i, parent: Node2D):
+func setup(gridCoord: Vector2i, parent: Node2D, newResource: PlantResource):
 	position = gridCoord * Data.TILE_SIZE + Vector2i(8,5)
 	#print("Pixel" + str(position) + " Coordinates"  + str(gridCoord))
 	parent.add_child(self)
 	coord = gridCoord
+	res = newResource
 	$Sprite2D.texture = res.texture
 	
 func grow(watered: bool):
