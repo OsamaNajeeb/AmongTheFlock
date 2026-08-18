@@ -1,7 +1,7 @@
 class_name  PlantResource extends Resource
 
 @export var texture: Texture2D
-@export var growSpeed := 1
+@export var growSpeed : float = 1.0
 @export var hFrames: int = 3
 @export var deathMax: int = 3
  
