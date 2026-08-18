@@ -73,15 +73,32 @@ func _on_player_tool_use(tool: Enum.Tool, pos: Vector2) -> void:
 	grid_coord.y += -1 if pos.y < 0 else 0
 	#Just make it simpler we used get_used_cells, if this Layer is used on exact coordinates 
 	#or not.
-	var has_soil = grid_coord in $Layers/GrassLayer.get_used_cells()
+	var has_soil = grid_coord in $Layers/SoilLayer.get_used_cells()
 	match tool:
 		Enum.Tool.HOE:
-			var cell = $Layers/GrassLayer.get_cell_tile_data(grid_coord) as TileData
-			if cell and cell.get_custom_data('Farmable'):
-				#Ok I know we have to call SoilLayer to apply on GrassLayer if I'm not mistaken.
-				#set_cells_terrain_connect() is the main guy that let us set terrain on existing terrain
-				#we have grid vector or our coordination, terrain SET and then terrain 
-				$Layers/SoilLayer.set_cells_terrain_connect([grid_coord],0,0)
+			$Layers/HitMarker.global_position = pos
+			$Layers/HitMarker.radius = 15
+			$Layers/HitMarker.queue_redraw()
+			var obstacles = false
+			for object in get_tree().get_nodes_in_group('Objects'):
+				if object.position.distance_to(pos) < 25:
+					obstacles = true
+					break
+			for object in get_tree().get_nodes_in_group('SObjects'):
+				if object.position.distance_to(pos) < 16:
+					obstacles = true
+					break
+			if obstacles == false:
+				var cell = $Layers/GrassLayer.get_cell_tile_data(grid_coord) as TileData
+				if cell and cell.get_custom_data('Farmable'):
+					#Ok I know we have to call SoilLayer to apply on GrassLayer if I'm not mistaken.
+					#set_cells_terrain_connect() is the main guy that let us set terrain on existing terrain
+					#we have grid vector or our coordination, terrain SET and then terrain 
+					$Layers/SoilLayer.set_cells_terrain_connect([grid_coord],0,0)
+			await get_tree().create_timer(0.3).timeout
+			$Layers/HitMarker.radius = 0.0
+			$Layers/HitMarker.queue_redraw()
+			
 		Enum.Tool.WATER:
 			if has_soil:
 				#If it does exist then set_cell will look for coordinate, then it looks
@@ -112,6 +129,7 @@ func _on_player_tool_use(tool: Enum.Tool, pos: Vector2) -> void:
 				#index but I don't know if there any stupid built in command
 				#that removes first index value in the array
 				usedCells.append(grid_coord)
+				plant.tree_exited.connect(func(): usedCells.erase(grid_coord))
 				
 			#CODE BELOW REMOVED BUT IT'S NOT BAD
 			#the code below does same thing as before but it is less random that's all	
@@ -154,7 +172,22 @@ func dayRestart():
 #This function reset the gradient color by resetting the time.
 func levelReset():
 	
+	#This for loop checks if these node has group node called Plants
 	for plant in get_tree().get_nodes_in_group('Plants'):
+		
+		#Once found then it, ok this code down is kinda complex for my 1 IQ brain so here is the
+		#Code snippit that Gemini has given which is helpful for my 1 kb RAM brain
+		
+		## Grab the list of all the wet tiles
+		##var wet_tiles_list = $Layers/WetSoilLayer.get_used_cells()
+		## Check if this specific plant's coordinate is inside that list
+		##if plant.coord in wet_tiles_list:
+			## If YES, tell the plant it was watered
+		   ##plant.grow(true)
+		##else:
+			## If NO, tell the plant it was NOT watered
+			##plant.grow(false)
+			
 		plant.grow(plant.coord in $Layers/WetSoilLayer.get_used_cells())
 	$Layers/WetSoilLayer.clear()
 	

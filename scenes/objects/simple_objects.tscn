@@ -6,11 +6,11 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_s8wq0"]
 size = Vector2(13, 9.5)
 
-[node name="SimpleObjects" type="StaticBody2D" unique_id=1370482860]
+[node name="SimpleObjects" type="StaticBody2D" unique_id=1370482860 groups=["SObjects"]]
 collision_mask = 0
 script = ExtResource("1_5ijfm")
-randomBool = null
-size = 1
+size = 3
+style = 1
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1495109978]
 texture = ExtResource("1_nv3ab")
