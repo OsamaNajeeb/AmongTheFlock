@@ -3,6 +3,7 @@ extends Node2D
 var debugHitPos: Vector2
 var debugHitRadius: float = 0.0
 var showDebugHit: bool = false
+
 @onready var daytransitionMaterial = $Overlay/CanvasLayer/DayTransitionLayer.material
 #So we added Day & Night effect in our game with help of gradient
 #if you Level node, you can see the gradient and make some adjustment
@@ -150,8 +151,11 @@ func dayRestart():
 
 #This function reset the gradient color by resetting the time.
 func levelReset():
+	
 	for plant in get_tree().get_nodes_in_group('Plants'):
 		plant.grow(plant.coord in $Layers/WetSoilLayer.get_used_cells())
+	$Layers/WetSoilLayer.clear()
+	
 	$Timers/DayTime.start()
 	#This is super heckin important saar, so for my understanding, this line of code uses
 	#this new concept called duck typing which means if that little shit walks like duck, quacks

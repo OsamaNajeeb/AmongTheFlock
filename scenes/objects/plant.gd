@@ -16,3 +16,5 @@ func setup(gridCoord: Vector2i, parent: Node2D):
 func grow(watered: bool):
 	if watered:
 		res.grow($Sprite2D)
+	else:
+		res.decay(self)
