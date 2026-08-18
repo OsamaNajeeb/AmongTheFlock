@@ -1341,7 +1341,7 @@ color = Color(0.12591085, 0.12591085, 0.12591082, 1)
 [node name="Timers" type="Node" parent="." unique_id=1068447046]
 
 [node name="DayTime" type="Timer" parent="Timers" unique_id=33503542]
-wait_time = 5.0
+wait_time = 180.0
 one_shot = true
 autostart = true
 

@@ -150,6 +150,8 @@ func dayRestart():
 
 #This function reset the gradient color by resetting the time.
 func levelReset():
+	for plant in get_tree().get_nodes_in_group('Plants'):
+		plant.grow(plant.coord in $Layers/WetSoilLayer.get_used_cells())
 	$Timers/DayTime.start()
 	#This is super heckin important saar, so for my understanding, this line of code uses
 	#this new concept called duck typing which means if that little shit walks like duck, quacks
