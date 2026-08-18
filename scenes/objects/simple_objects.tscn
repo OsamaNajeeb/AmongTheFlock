@@ -1,0 +1,23 @@
+[gd_scene format=3 uid="uid://bqslqtiln4d41"]
+
+[ext_resource type="Script" uid="uid://bbliob02jtsbo" path="res://scenes/objects/simple_objects.gd" id="1_5ijfm"]
+[ext_resource type="Texture2D" uid="uid://bxsysay51a72s" path="res://graphics/tilesets/decoration.png" id="1_nv3ab"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_s8wq0"]
+size = Vector2(13, 9.5)
+
+[node name="SimpleObjects" type="StaticBody2D" unique_id=1370482860]
+collision_mask = 0
+script = ExtResource("1_5ijfm")
+randomBool = null
+size = 1
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1495109978]
+texture = ExtResource("1_nv3ab")
+hframes = 4
+vframes = 2
+frame = 7
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=760569575]
+position = Vector2(0.5, 0.75)
+shape = SubResource("RectangleShape2D_s8wq0")

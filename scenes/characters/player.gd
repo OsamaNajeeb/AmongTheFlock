@@ -57,11 +57,11 @@ func getbasicinput():
 		#It then converts -1 to 5 because it's like element it start from 0 to 5, this way
 		#Your code works smoothly
 		currentTool = posmod(currentTool + int(dir), Enum.Tool.size()) as Enum.Tool
-		$ToolUi.reveal()
+		$ToolUi.reveal(true)
 		
 	if Input.is_action_just_pressed("seed_forward") and currentTool == Enum.Tool.SEED:
 		currentSeed = posmod(currentSeed + 1, Enum.Seed.size()) as Enum.Seed
-		print(currentSeed)
+		$ToolUi.reveal(false)
 	
 	#This condition uses built in code to listen if the action inside input map 
 	#is pressed or not

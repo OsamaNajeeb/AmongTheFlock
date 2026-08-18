@@ -10,7 +10,7 @@
 radius = 7.0
 height = 18.0
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_lg7fn"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_mbbxw"]
 resource_local_to_scene = true
 shader = ExtResource("3_mbbxw")
 shader_parameter/ColorParameter = Color(1, 1, 1, 1)
@@ -30,7 +30,7 @@ position = Vector2(0, 10.5)
 texture = ExtResource("2_mbbxw")
 
 [node name="FlashTree" parent="." unique_id=2143689914 instance=ExtResource("2_7yu6v")]
-material = SubResource("ShaderMaterial_lg7fn")
+material = SubResource("ShaderMaterial_mbbxw")
 texture = ExtResource("1_r6wkp")
 hframes = 2
 
