@@ -76,18 +76,42 @@ func _on_player_tool_use(tool: Enum.Tool, pos: Vector2) -> void:
 	var has_soil = grid_coord in $Layers/SoilLayer.get_used_cells()
 	match tool:
 		Enum.Tool.HOE:
-			$Layers/HitMarker.global_position = pos
-			$Layers/HitMarker.radius = 15
-			$Layers/HitMarker.queue_redraw()
-			var obstacles = false
-			for object in get_tree().get_nodes_in_group('Objects'):
-				if object.position.distance_to(pos) < 25:
-					obstacles = true
-					break
-			for object in get_tree().get_nodes_in_group('SObjects'):
-				if object.position.distance_to(pos) < 16:
-					obstacles = true
-					break
+			#This part of the code is VERY IMPORTANT TO UNDERSTAND SAAAR
+			#ok For my understanding this part of the code just calls the
+			#the physics engine for some reason
+			var spaceState = get_world_2d().direct_space_state
+			print(spaceState)
+			#This is basically the area of what player is looking at,
+			#this is will make sure that debugger tile will check if the 
+			#object's area2D collision is under the debugger tile or not
+			#which is more accurate and better than that fucking radar ping
+			var recShape = RectangleShape2D.new()
+			recShape.size = Vector2(16,16)
+			#This is basically where the Godot takes the ground, define wtf
+			#these are, does it contain simple grass or it has some obstacles
+			var query = PhysicsShapeQueryParameters2D.new()
+			query.shape = recShape
+			var tileCentre = Vector2(grid_coord) * Data.TILE_SIZE + Vector2(8, 8)
+			query.transform = Transform2D(0, tileCentre)
+			#This line of code allows Godot to ignore Player Collision
+			query.exclude = [player.get_rid()]
+			query.collide_with_areas = true
+			#This part is very important so if it detects the obstacles it 
+			#give you so many fucking ID and node in details, if there is 
+			#no obstacles then it gives you null
+			var hitResults = spaceState.intersect_shape(query)
+			##print(hitResults)
+			var obstacles = hitResults.size() > 0
+			
+			#var obstacles = false
+			#for object in get_tree().get_nodes_in_group('Objects'):
+				#if object.position.distance_to(pos) < 25:
+					#obstacles = true
+					#break
+			#for object in get_tree().get_nodes_in_group('SObjects'):
+				#if object.position.distance_to(pos) < 16:
+					#obstacles = true
+					#break
 			if obstacles == false:
 				var cell = $Layers/GrassLayer.get_cell_tile_data(grid_coord) as TileData
 				if cell and cell.get_custom_data('Farmable'):
@@ -95,9 +119,6 @@ func _on_player_tool_use(tool: Enum.Tool, pos: Vector2) -> void:
 					#set_cells_terrain_connect() is the main guy that let us set terrain on existing terrain
 					#we have grid vector or our coordination, terrain SET and then terrain 
 					$Layers/SoilLayer.set_cells_terrain_connect([grid_coord],0,0)
-			await get_tree().create_timer(0.3).timeout
-			$Layers/HitMarker.radius = 0.0
-			$Layers/HitMarker.queue_redraw()
 			
 		Enum.Tool.WATER:
 			if has_soil:

@@ -16,6 +16,9 @@ shader = ExtResource("3_mbbxw")
 shader_parameter/ColorParameter = Color(1, 1, 1, 1)
 shader_parameter/Progress = 0.0
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_2uimp"]
+radius = 13.0
+
 [node name="Tree" type="StaticBody2D" unique_id=1079940140 groups=["Objects"]]
 collision_layer = 4
 collision_mask = 0
@@ -58,3 +61,9 @@ position = Vector2(7, 4)
 position = Vector2(-8, 6)
 
 [node name="Apples" type="Node2D" parent="." unique_id=293685923]
+
+[node name="ToolBlocker" type="Area2D" parent="." unique_id=333932396]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ToolBlocker" unique_id=1762179808]
+position = Vector2(0, 2)
+shape = SubResource("CircleShape2D_2uimp")
