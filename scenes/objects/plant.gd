@@ -13,10 +13,16 @@ func setup(gridCoord: Vector2i, parent: Node2D, newResource: PlantResource):
 	
 	coord = gridCoord
 	res = newResource
-	$Sprite2D.texture = res.texture
+	$FlashApple.texture = res.texture
 	
 func grow(watered: bool):
 	if watered:
-		res.grow($Sprite2D)
+		res.grow($FlashApple)
 	else:
 		res.decay(self)
+
+#So we used Signals>Connecting the Area2D with Plant.gd.
+func _on_area_2d_body_entered(body: Node2D) -> void:
+	if body.name == "Player":
+		if res.harvastable():
+			$FlashApple.flash(0.2, 0.4, queue_free)

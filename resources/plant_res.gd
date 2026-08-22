@@ -24,7 +24,13 @@ func grow(sprite: Sprite2D):
 
 func decay(plant: StaticBody2D):
 	deadTimer += 1
-	print(deadTimer)
+	#print(deadTimer)
 	if deadTimer >= deathMax:
 		deadTimer = 0
 		plant.queue_free()
+
+#Maybe ONE FUCKING DAY I will understand why we use return because
+#no matter how many times these AI clanker explain, the plane just crashes
+#on my head, doesn't even fly over the head bruh
+func harvastable() -> bool:
+	return age >= hFrames

@@ -14,6 +14,8 @@ var showDebugHit: bool = false
 #in every action
 var plantScene = preload("res://scenes/objects/plant.tscn")
 
+var plantInfoScene = preload("res://scenes/ui/plant_info.tscn")
+
 #For my understanding we store the coordination in the Array, why because when
 #we plant a seed, someone has to remember if we plant the seed and where exactly
 #did we plant it so that the game doesn't turn into clusterfuck
@@ -143,7 +145,7 @@ func _on_player_tool_use(tool: Enum.Tool, pos: Vector2) -> void:
 				#for my understanding we checking what fucking seed the player
 				#is holding if you open player.gd
 				plantRes.setup($Objects/Player.currentSeed)
-				print($Objects/Player.currentSeed)
+				#print($Objects/Player.currentSeed)
 				#instantiate() is basically constructor like scene which is
 				#which is basically class, we have to build the class/scene/blueprint
 				#with help of constructor which is instantiate the construction company,
@@ -156,6 +158,10 @@ func _on_player_tool_use(tool: Enum.Tool, pos: Vector2) -> void:
 				#that removes first index value in the array
 				usedCells.append(grid_coord)
 				plant.tree_exited.connect(func(): usedCells.erase(grid_coord))
+				
+				var plantInfo = plantInfoScene.instantiate()
+				#plantInfo.setup(plant)
+				$Overlay/CanvasLayer/PlantInfoContainer.add(plantInfo)
 				
 			#CODE BELOW REMOVED BUT IT'S NOT BAD
 			#the code below does same thing as before but it is less random that's all	
@@ -215,7 +221,7 @@ func levelReset():
 			##plant.grow(false)
 			
 		plant.grow(plant.coord in $Layers/WetSoilLayer.get_used_cells())
-	$Layers/WetSoilLayer.clear()
+	#$Layers/WetSoilLayer.clear()
 	
 	$Timers/DayTime.start()
 	#This is super heckin important saar, so for my understanding, this line of code uses
