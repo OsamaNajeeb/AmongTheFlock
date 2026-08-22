@@ -1,5 +1,8 @@
-class_name  PlantResource extends Resource
+class_name PlantResource extends Resource
 
+#Just to make the code flexible, we are using dictionary to handle most
+#of the texture of the plant, value of dictionary stored in data.gd and the 
+#static ID stored in enums.gd
 @export var texture: Texture2D
 @export var growSpeed : float = 1.0
 @export var hFrames: int = 3

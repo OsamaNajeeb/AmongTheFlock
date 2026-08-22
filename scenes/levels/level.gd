@@ -98,7 +98,7 @@ func _on_player_tool_use(tool: Enum.Tool, pos: Vector2) -> void:
 			query.collide_with_areas = true
 			#This part is very important so if it detects the obstacles it 
 			#give you so many fucking ID and node in details, if there is 
-			#no obstacles then it gives you null
+			#no obstacles then it gives you empty dictionary NOT NULL.
 			var hitResults = spaceState.intersect_shape(query)
 			##print(hitResults)
 			var obstacles = hitResults.size() > 0
@@ -137,8 +137,13 @@ func _on_player_tool_use(tool: Enum.Tool, pos: Vector2) -> void:
 		
 		Enum.Tool.SEED:
 			if has_soil and grid_coord not in usedCells:
+				#we are generating PlantResource Resource by calling the stupid
+				#class
 				var plantRes = PlantResource.new()
+				#for my understanding we checking what fucking seed the player
+				#is holding if you open player.gd
 				plantRes.setup($Objects/Player.currentSeed)
+				print($Objects/Player.currentSeed)
 				#instantiate() is basically constructor like scene which is
 				#which is basically class, we have to build the class/scene/blueprint
 				#with help of constructor which is instantiate the construction company,
