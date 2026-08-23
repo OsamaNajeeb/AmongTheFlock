@@ -7,6 +7,8 @@ class_name PlantResource extends Resource
 @export var growSpeed : float = 1.0
 @export var hFrames: int = 3
 @export var deathMax: int = 3
+@export var plantName: String
+@export var icon: Texture2D
  
 var age: float
 var deadTimer : int
@@ -16,6 +18,8 @@ func setup(seedEnum: Enum.Seed):
 	growSpeed = Data.PLANT_DATA[seedEnum]['grow_speed']
 	hFrames = Data.PLANT_DATA[seedEnum]['h_frames']
 	deathMax = Data.PLANT_DATA[seedEnum]['death_max']
+	icon = load(Data.PLANT_DATA[seedEnum]['icon_texture'])
+	plantName = Data.PLANT_DATA[seedEnum]['name']
 
 func grow(sprite: Sprite2D):
 	age = min(age + growSpeed, hFrames)

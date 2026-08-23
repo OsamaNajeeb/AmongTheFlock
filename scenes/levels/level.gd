@@ -9,6 +9,7 @@ var showDebugHit: bool = false
 #if you Level node, you can see the gradient and make some adjustment
 @export var daytime_color: Gradient
 
+
 #We used preload because we need to store the plant in memory so that it
 #doesn't drop fps when we need to plant see as the Game will try to load
 #in every action
@@ -160,7 +161,7 @@ func _on_player_tool_use(tool: Enum.Tool, pos: Vector2) -> void:
 				plant.tree_exited.connect(func(): usedCells.erase(grid_coord))
 				
 				var plantInfo = plantInfoScene.instantiate()
-				#plantInfo.setup(plant)
+				plantInfo.setup(plant)
 				$Overlay/CanvasLayer/PlantInfoContainer.add(plantInfo)
 				
 			#CODE BELOW REMOVED BUT IT'S NOT BAD
@@ -221,7 +222,7 @@ func levelReset():
 			##plant.grow(false)
 			
 		plant.grow(plant.coord in $Layers/WetSoilLayer.get_used_cells())
-	#$Layers/WetSoilLayer.clear()
+	$Layers/WetSoilLayer.clear()
 	
 	$Timers/DayTime.start()
 	#This is super heckin important saar, so for my understanding, this line of code uses

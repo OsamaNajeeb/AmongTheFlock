@@ -2,12 +2,14 @@
 
 [ext_resource type="Texture2D" uid="uid://dlh3xrk6a5cu" path="res://graphics/icons/tomato.png" id="1_r3qta"]
 [ext_resource type="Theme" uid="uid://bopyeceq23awq" path="res://scenes/ui/game_theme.tres" id="1_uxb0r"]
+[ext_resource type="Script" uid="uid://c35ols0lbod4b" path="res://scenes/ui/plant_info.gd" id="2_kscek"]
 [ext_resource type="Texture2D" uid="uid://k4r0km103lsj" path="res://graphics/ui/v_bar.png" id="2_uxb0r"]
 
 [node name="PlantInfo" type="PanelContainer" unique_id=1405603882]
 offset_right = 40.0
 offset_bottom = 40.0
 theme = ExtResource("1_uxb0r")
+script = ExtResource("2_kscek")
 
 [node name="HBoxContainer" type="HBoxContainer" parent="." unique_id=716516332]
 layout_mode = 2
