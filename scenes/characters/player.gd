@@ -10,6 +10,8 @@ var speed = 125
 #To avoid that stupid animation and movement that looks goofy, we are adding delay in movement
 var canMove: bool = true
 
+signal diagnose
+
 #Ok so my understand that these code run in sequence from top to bottom like any other, so 
 #this line code tells Machine/Godot, you don't have to call this code right now but until this
 #character is built or something then call this this code, so on ready is the reminder.
@@ -74,6 +76,9 @@ func getbasicinput():
 		
 		#Once pressed, then it calls the ToolOneShot Oneshot manager
 		$Animation/AnimationTree.set("parameters/ToolOneShot/request", AnimationNodeOneShot.ONE_SHOT_REQUEST_FIRE)
+	
+	if Input.is_action_just_pressed("diagnose"):
+		diagnose.emit()
 		
 
 func move():

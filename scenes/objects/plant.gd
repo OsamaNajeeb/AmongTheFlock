@@ -26,3 +26,5 @@ func _on_area_2d_body_entered(body: Node2D) -> void:
 	if body.name == "Player":
 		if res.harvastable():
 			$FlashApple.flash(0.2, 0.4, queue_free)
+			#death.emit(coord)
+			#res.dead = true

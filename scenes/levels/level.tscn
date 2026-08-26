@@ -1292,7 +1292,6 @@ tile_set = SubResource("TileSet_s8wq0")
 
 [node name="SoilLayer" type="TileMapLayer" parent="Layers" unique_id=1309402043]
 z_index = -2
-tile_map_data = PackedByteArray("AAALABQAAAABAAAAAAAMABQAAAABAAAAAAAMABUAAAADAAQAAAAMABYAAAADAAQAAAANABYAAAABAAEAAAAOABYAAAACAAEAAAAOABcAAAACAAIAAAANABcAAAABAAIAAAAMABcAAAABAAIAAAALABYAAAABAAEAAAAKABQAAAABAAAAAAAJABQAAAABAAAAAAAJABUAAAAAAAQAAAAIABUAAAABAAEAAAAHABUAAAAAAAEAAAAHABYAAAAGAAMAAAAGABYAAAAAAAMAAAALABUAAAABAAEAAAAKABUAAAABAAEAAAAJABYAAAABAAEAAAAIABYAAAAGAAEAAAANABQAAAABAAAAAAAOABQAAAACAAAAAAAJABEAAAACAAAAAAAIABEAAAAAAAAAAAAIABIAAAAAAAIAAAAKABYAAAABAAQAAAAJABcAAAAFAAEAAAAIABcAAAAAAAEAAAAIABgAAAAAAAIAAAAJABgAAAACAAIAAAAKABcAAAABAAIAAAALABcAAAABAAIAAAAIABQAAAABAAAAAAAHABQAAAAEAAIAAAAHABMAAAAHAAAAAAAGABMAAAAAAAMAAAANABUAAAABAAEAAAAOABUAAAAFAAQAAAAPABUAAAACAAMAAAAJABIAAAACAAIAAAA=")
 tile_set = SubResource("TileSet_2uimp")
 
 [node name="WetSoilLayer" type="TileMapLayer" parent="Layers" unique_id=1438898200]
@@ -1315,6 +1314,108 @@ position = Vector2(186, 342)
 [node name="Tree" parent="Objects" unique_id=1079940140 instance=ExtResource("8_ouxo3")]
 position = Vector2(100, 333)
 
+[node name="Tree2" parent="Objects" unique_id=427876351 instance=ExtResource("8_ouxo3")]
+position = Vector2(126, 135)
+
+[node name="Tree32" parent="Objects" unique_id=1393352604 instance=ExtResource("8_ouxo3")]
+position = Vector2(182, 98)
+
+[node name="Tree33" parent="Objects" unique_id=297321221 instance=ExtResource("8_ouxo3")]
+position = Vector2(214, 49)
+
+[node name="Tree3" parent="Objects" unique_id=2119040100 instance=ExtResource("8_ouxo3")]
+position = Vector2(229, 201)
+
+[node name="Tree4" parent="Objects" unique_id=1545273829 instance=ExtResource("8_ouxo3")]
+position = Vector2(252, 213)
+
+[node name="Tree5" parent="Objects" unique_id=569628439 instance=ExtResource("8_ouxo3")]
+position = Vector2(400, 194)
+
+[node name="Tree30" parent="Objects" unique_id=1000575794 instance=ExtResource("8_ouxo3")]
+position = Vector2(475, 124)
+
+[node name="Tree31" parent="Objects" unique_id=588575655 instance=ExtResource("8_ouxo3")]
+position = Vector2(496, 145)
+
+[node name="Tree6" parent="Objects" unique_id=1462824335 instance=ExtResource("8_ouxo3")]
+position = Vector2(393, 214)
+
+[node name="Tree7" parent="Objects" unique_id=556126505 instance=ExtResource("8_ouxo3")]
+position = Vector2(389, 237)
+
+[node name="Tree8" parent="Objects" unique_id=240046084 instance=ExtResource("8_ouxo3")]
+position = Vector2(392, 297)
+
+[node name="Tree9" parent="Objects" unique_id=688329096 instance=ExtResource("8_ouxo3")]
+position = Vector2(398, 318)
+
+[node name="Tree10" parent="Objects" unique_id=1376441207 instance=ExtResource("8_ouxo3")]
+position = Vector2(409, 338)
+
+[node name="Tree11" parent="Objects" unique_id=1387000150 instance=ExtResource("8_ouxo3")]
+position = Vector2(416, 359)
+
+[node name="Tree28" parent="Objects" unique_id=866741667 instance=ExtResource("8_ouxo3")]
+position = Vector2(549, 431)
+
+[node name="Tree29" parent="Objects" unique_id=935359076 instance=ExtResource("8_ouxo3")]
+position = Vector2(625, 305)
+
+[node name="Tree12" parent="Objects" unique_id=1672458757 instance=ExtResource("8_ouxo3")]
+position = Vector2(323, 458)
+
+[node name="Tree13" parent="Objects" unique_id=13502380 instance=ExtResource("8_ouxo3")]
+position = Vector2(351, 474)
+
+[node name="Tree14" parent="Objects" unique_id=1718266920 instance=ExtResource("8_ouxo3")]
+position = Vector2(238, 474)
+
+[node name="Tree25" parent="Objects" unique_id=2118324544 instance=ExtResource("8_ouxo3")]
+position = Vector2(233, 577)
+
+[node name="Tree26" parent="Objects" unique_id=15901746 instance=ExtResource("8_ouxo3")]
+position = Vector2(82, 608)
+
+[node name="Tree27" parent="Objects" unique_id=1586324918 instance=ExtResource("8_ouxo3")]
+position = Vector2(184, 621)
+
+[node name="Tree15" parent="Objects" unique_id=2072067938 instance=ExtResource("8_ouxo3")]
+position = Vector2(239, 456)
+
+[node name="Tree16" parent="Objects" unique_id=360965747 instance=ExtResource("8_ouxo3")]
+position = Vector2(215, 461)
+
+[node name="Tree17" parent="Objects" unique_id=1397443900 instance=ExtResource("8_ouxo3")]
+position = Vector2(32, 504)
+
+[node name="Tree18" parent="Objects" unique_id=851618246 instance=ExtResource("8_ouxo3")]
+position = Vector2(20, 483)
+
+[node name="Tree35" parent="Objects" unique_id=247656022 instance=ExtResource("8_ouxo3")]
+position = Vector2(-81, 404)
+
+[node name="Tree19" parent="Objects" unique_id=537980018 instance=ExtResource("8_ouxo3")]
+position = Vector2(50, 481)
+
+[node name="Tree20" parent="Objects" unique_id=429822025 instance=ExtResource("8_ouxo3")]
+position = Vector2(-89, 295)
+
+[node name="Tree21" parent="Objects" unique_id=1737471056 instance=ExtResource("8_ouxo3")]
+position = Vector2(-35, 207)
+
+[node name="Tree34" parent="Objects" unique_id=614058010 instance=ExtResource("8_ouxo3")]
+position = Vector2(-109, 147)
+
+[node name="Tree22" parent="Objects" unique_id=1731346909 instance=ExtResource("8_ouxo3")]
+position = Vector2(17, 101)
+
+[node name="Tree23" parent="Objects" unique_id=2070369254 instance=ExtResource("8_ouxo3")]
+position = Vector2(62, 91)
+
+[node name="Tree24" parent="Objects" unique_id=1516872786 instance=ExtResource("8_ouxo3")]
+position = Vector2(45, 104)
+
 [node name="Blob" parent="Objects" unique_id=871202714 instance=ExtResource("9_icy5c")]
 position = Vector2(470, 270)
 
@@ -1325,9 +1426,230 @@ randomBool = false
 size = 3
 style = 1
 
+[node name="SimpleObjects36" parent="Objects" unique_id=755212976 instance=ExtResource("11_7pb6i")]
+z_index = 0
+position = Vector2(343, 118)
+randomBool = false
+size = 3
+style = 1
+
+[node name="SimpleObjects34" parent="Objects" unique_id=1117571673 instance=ExtResource("11_7pb6i")]
+z_index = 0
+position = Vector2(-54, 199)
+randomBool = false
+size = 3
+style = 1
+
+[node name="SimpleObjects2" parent="Objects" unique_id=572025838 instance=ExtResource("11_7pb6i")]
+z_index = 0
+position = Vector2(338, 382)
+randomBool = false
+size = 2
+style = 1
+
+[node name="SimpleObjects3" parent="Objects" unique_id=2077775798 instance=ExtResource("11_7pb6i")]
+z_index = 0
+position = Vector2(100, 425)
+randomBool = false
+size = 2
+
+[node name="SimpleObjects4" parent="Objects" unique_id=19151813 instance=ExtResource("11_7pb6i")]
+z_index = 0
+position = Vector2(89, 429)
+randomBool = false
+size = 2
+
+[node name="SimpleObjects5" parent="Objects" unique_id=1649442981 instance=ExtResource("11_7pb6i")]
+z_index = 0
+position = Vector2(100, 433)
+randomBool = false
+size = 2
+
+[node name="SimpleObjects6" parent="Objects" unique_id=1509366994 instance=ExtResource("11_7pb6i")]
+z_index = 0
+position = Vector2(86, 437)
+randomBool = false
+size = 3
+
+[node name="SimpleObjects7" parent="Objects" unique_id=646759320 instance=ExtResource("11_7pb6i")]
+z_index = 0
+position = Vector2(99, 442)
+randomBool = false
+size = 3
+
+[node name="SimpleObjects38" parent="Objects" unique_id=1026761331 instance=ExtResource("11_7pb6i")]
+z_index = 0
+position = Vector2(29, 119)
+randomBool = false
+size = 3
+
+[node name="SimpleObjects41" parent="Objects" unique_id=303536751 instance=ExtResource("11_7pb6i")]
+z_index = 0
+position = Vector2(80, 103)
+randomBool = false
+size = 3
+
+[node name="SimpleObjects39" parent="Objects" unique_id=1200399753 instance=ExtResource("11_7pb6i")]
+z_index = 0
+position = Vector2(65, 112)
+randomBool = false
+size = 2
+
+[node name="SimpleObjects40" parent="Objects" unique_id=727901916 instance=ExtResource("11_7pb6i")]
+z_index = 0
+position = Vector2(11, 120)
+randomBool = false
+size = 2
+
+[node name="SimpleObjects37" parent="Objects" unique_id=1203485498 instance=ExtResource("11_7pb6i")]
+z_index = 0
+position = Vector2(392, 505)
+randomBool = false
+size = 3
+
+[node name="SimpleObjects8" parent="Objects" unique_id=1966658372 instance=ExtResource("11_7pb6i")]
+position = Vector2(111, 435)
+randomBool = false
+
+[node name="SimpleObjects9" parent="Objects" unique_id=7947849 instance=ExtResource("11_7pb6i")]
+position = Vector2(91, 419)
+randomBool = false
+
+[node name="SimpleObjects10" parent="Objects" unique_id=1810644895 instance=ExtResource("11_7pb6i")]
+position = Vector2(74, 439)
+randomBool = false
+size = 0
+
+[node name="SimpleObjects11" parent="Objects" unique_id=1641713003 instance=ExtResource("11_7pb6i")]
+position = Vector2(92, 447)
+randomBool = false
+size = 0
+
+[node name="SimpleObjects12" parent="Objects" unique_id=1965142322 instance=ExtResource("11_7pb6i")]
+position = Vector2(109, 447)
+randomBool = false
+size = 0
+
+[node name="SimpleObjects13" parent="Objects" unique_id=1796725847 instance=ExtResource("11_7pb6i")]
+position = Vector2(108, 419)
+randomBool = false
+size = 0
+
+[node name="SimpleObjects14" parent="Objects" unique_id=1038706133 instance=ExtResource("11_7pb6i")]
+position = Vector2(78, 426)
+randomBool = false
+size = 0
+
+[node name="SimpleObjects15" parent="Objects" unique_id=1503814856 instance=ExtResource("11_7pb6i")]
+position = Vector2(295, 312)
+randomBool = false
+size = 0
+
+[node name="SimpleObjects29" parent="Objects" unique_id=15966327 instance=ExtResource("11_7pb6i")]
+position = Vector2(187, 434)
+randomBool = false
+size = 0
+
+[node name="SimpleObjects30" parent="Objects" unique_id=418862119 instance=ExtResource("11_7pb6i")]
+position = Vector2(12, 290)
+randomBool = false
+size = 0
+
+[node name="SimpleObjects31" parent="Objects" unique_id=28685065 instance=ExtResource("11_7pb6i")]
+position = Vector2(87, 224)
+randomBool = false
+size = 0
+
+[node name="SimpleObjects32" parent="Objects" unique_id=750873177 instance=ExtResource("11_7pb6i")]
+position = Vector2(87, 239)
+randomBool = false
+size = 0
+
+[node name="SimpleObjects33" parent="Objects" unique_id=2064712791 instance=ExtResource("11_7pb6i")]
+position = Vector2(294, 400)
+randomBool = false
+size = 0
+
+[node name="SimpleObjects16" parent="Objects" unique_id=258314466 instance=ExtResource("11_7pb6i")]
+position = Vector2(198, 256)
+randomBool = false
+size = 0
+
+[node name="SimpleObjects17" parent="Objects" unique_id=1728470752 instance=ExtResource("11_7pb6i")]
+position = Vector2(186, 261)
+randomBool = false
+size = 0
+
+[node name="SimpleObjects18" parent="Objects" unique_id=1536408076 instance=ExtResource("11_7pb6i")]
+position = Vector2(199, 265)
+randomBool = false
+
+[node name="SimpleObjects19" parent="Objects" unique_id=153478330 instance=ExtResource("11_7pb6i")]
+position = Vector2(452, 263)
+randomBool = false
+
+[node name="SimpleObjects20" parent="Objects" unique_id=1546639105 instance=ExtResource("11_7pb6i")]
+z_index = 0
+position = Vector2(475, 302)
+randomBool = false
+size = 3
+
+[node name="SimpleObjects21" parent="Objects" unique_id=1955645837 instance=ExtResource("11_7pb6i")]
+z_index = 0
+position = Vector2(520, 273)
+randomBool = false
+size = 3
+style = 1
+
+[node name="SimpleObjects22" parent="Objects" unique_id=1246709099 instance=ExtResource("11_7pb6i")]
+position = Vector2(469, 239)
+randomBool = false
+size = 0
+style = 1
+
+[node name="SimpleObjects23" parent="Objects" unique_id=678284368 instance=ExtResource("11_7pb6i")]
+position = Vector2(516, 247)
+randomBool = false
+size = 0
+style = 1
+
+[node name="SimpleObjects24" parent="Objects" unique_id=1759369497 instance=ExtResource("11_7pb6i")]
+position = Vector2(482, 261)
+randomBool = false
+style = 1
+
+[node name="SimpleObjects25" parent="Objects" unique_id=731932144 instance=ExtResource("11_7pb6i")]
+position = Vector2(180, 298)
+randomBool = false
+style = 1
+
+[node name="SimpleObjects35" parent="Objects" unique_id=969946419 instance=ExtResource("11_7pb6i")]
+position = Vector2(-53, 210)
+randomBool = false
+style = 1
+
+[node name="SimpleObjects26" parent="Objects" unique_id=1130391698 instance=ExtResource("11_7pb6i")]
+position = Vector2(193, 308)
+randomBool = false
+style = 1
+
+[node name="SimpleObjects27" parent="Objects" unique_id=242548687 instance=ExtResource("11_7pb6i")]
+position = Vector2(203, 303)
+randomBool = false
+size = 0
+style = 1
+
+[node name="SimpleObjects28" parent="Objects" unique_id=1416583015 instance=ExtResource("11_7pb6i")]
+position = Vector2(205, 312)
+randomBool = false
+size = 0
+style = 1
+
 [node name="Overlay" type="Node2D" parent="." unique_id=1237328437]
+metadata/_edit_lock_ = true
 
 [node name="DayTimeColor" type="CanvasModulate" parent="Overlay" unique_id=2134482057]
+metadata/_edit_lock_ = true
 
 [node name="CanvasLayer" type="CanvasLayer" parent="Overlay" unique_id=413067792]
 
@@ -1339,8 +1661,12 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 color = Color(0.12591085, 0.12591085, 0.12591082, 1)
+metadata/_edit_use_anchors_ = true
+metadata/_edit_lock_ = true
 
 [node name="PlantInfoContainer" parent="Overlay/CanvasLayer" unique_id=2071736688 instance=ExtResource("13_qogh7")]
+metadata/_edit_use_anchors_ = true
+metadata/_edit_lock_ = true
 
 [node name="Timers" type="Node" parent="." unique_id=1068447046]
 
@@ -1349,4 +1675,5 @@ wait_time = 180.0
 one_shot = true
 autostart = true
 
+[connection signal="diagnose" from="Objects/Player" to="." method="_on_player_diagnose"]
 [connection signal="tool_use" from="Objects/Player" to="." method="_on_player_tool_use"]
