@@ -335,16 +335,17 @@ states/Idle/position = Vector2(372.19998, 100.659996)
 states/Walk/node = SubResource("AnimationNodeBlendSpace2D_00t3g")
 states/Walk/position = Vector2(373, 11.3)
 transitions = ["Start", "Idle", SubResource("AnimationNodeStateMachineTransition_akk6n"), "Idle", "Walk", SubResource("AnimationNodeStateMachineTransition_iua1v"), "Walk", "Idle", SubResource("AnimationNodeStateMachineTransition_cajyj")]
-graph_offset = Vector2(35, -33.5)
+graph_offset = Vector2(21, -51.5)
 
 [sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_s8wq0"]
-graph_offset = Vector2(-382.41513, 36.327026)
+graph_offset = Vector2(-256.8, 39.2)
 nodes/MoveStateMachine/node = SubResource("AnimationNodeStateMachine_1k7fi")
 nodes/MoveStateMachine/position = Vector2(-80, 64)
 node_connections = [&"output", 0, &"MoveStateMachine"]
 
 [node name="Blob" type="CharacterBody2D" unique_id=871202714 groups=["Objects"]]
 collision_layer = 4
+collision_mask = 5
 script = ExtResource("1_hu4wv")
 
 [node name="FlashSprite2D" parent="." unique_id=2143689914 instance=ExtResource("2_3y2e6")]

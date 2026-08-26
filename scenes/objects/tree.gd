@@ -19,11 +19,11 @@ var treeHP := 3:
 			
 			#We creating new collision shape
 			var shape = RectangleShape2D.new()
-			shape.size = Vector2(12,6)
+			shape.size = Vector2(18,14)
 			#Replace the collison shape and size
 			$CollisionShape2D.shape = shape
 			#I think we are moving the collison 
-			$CollisionShape2D.position.y = 8
+			$CollisionShape2D.position.y = 10
 			
 #ok so this function loads after tree is loaded, in human eyes, this is instant
 #but in clanker's eyes it is milisecond difference

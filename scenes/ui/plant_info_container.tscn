@@ -1,6 +1,5 @@
 [gd_scene format=3 uid="uid://gxfhn8vu2d0l"]
 
-[ext_resource type="PackedScene" uid="uid://2df4pd5knx20" path="res://scenes/ui/plant_info.tscn" id="1_3rkib"]
 [ext_resource type="Script" uid="uid://dta4sel7cipay" path="res://scenes/ui/plant_info_container.gd" id="1_yipkq"]
 
 [node name="PlantInfoContainer" type="Control" unique_id=2071736688]
@@ -28,6 +27,3 @@ layout_mode = 2
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
-
-[node name="PlantInfo" parent="MarginContainer/ScrollContainer/VBoxContainer" unique_id=1405603882 instance=ExtResource("1_3rkib")]
-layout_mode = 2

@@ -83,7 +83,7 @@ func _on_player_tool_use(tool: Enum.Tool, pos: Vector2) -> void:
 			#ok For my understanding this part of the code just calls the
 			#the physics engine for some reason
 			var spaceState = get_world_2d().direct_space_state
-			print(spaceState)
+			#print(spaceState)
 			#This is basically the area of what player is looking at,
 			#this is will make sure that debugger tile will check if the 
 			#object's area2D collision is under the debugger tile or not
@@ -155,8 +155,7 @@ func _on_player_tool_use(tool: Enum.Tool, pos: Vector2) -> void:
 				plant.setup(grid_coord,$Objects, plantRes)
 				#Append stores value at the end of the array, push_back pops the last
 				#value in the array, whereas push_front stores value in first
-				#index but I don't know if there any stupid built in command
-				#that removes first index value in the array
+				#index
 				usedCells.append(grid_coord)
 				plant.tree_exited.connect(func(): usedCells.erase(grid_coord))
 				
@@ -194,6 +193,10 @@ func _on_player_tool_use(tool: Enum.Tool, pos: Vector2) -> void:
 			$Layers/HitMarker.radius = 0.0
 			$Layers/HitMarker.queue_redraw()
 			
+
+func _on_player_diagnose() -> void:
+	$Overlay/CanvasLayer/PlantInfoContainer.visible = not $Overlay/CanvasLayer/PlantInfoContainer.visible
+
 #For now we are not focusing on KOOOL transition because I didn't ask
 func dayRestart():
 	var tween = create_tween()
@@ -223,7 +226,7 @@ func levelReset():
 			
 		plant.grow(plant.coord in $Layers/WetSoilLayer.get_used_cells())
 	$Layers/WetSoilLayer.clear()
-	
+	$Overlay/CanvasLayer/PlantInfoContainer.updateAll()
 	$Timers/DayTime.start()
 	#This is super heckin important saar, so for my understanding, this line of code uses
 	#this new concept called duck typing which means if that little shit walks like duck, quacks

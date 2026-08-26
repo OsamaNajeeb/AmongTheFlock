@@ -22,6 +22,7 @@ stretch_mode = 5
 
 [node name="VBoxContainer" type="VBoxContainer" parent="HBoxContainer" unique_id=1400517142]
 layout_mode = 2
+size_flags_horizontal = 3
 
 [node name="Name" type="Label" parent="HBoxContainer/VBoxContainer" unique_id=1710826001]
 layout_mode = 2

@@ -12,6 +12,10 @@ class_name PlantResource extends Resource
  
 var age: float
 var deadTimer : int
+var dead: bool:
+	set(value):
+		dead = value
+		emit_changed()
 
 func setup(seedEnum: Enum.Seed):
 	texture = load(Data.PLANT_DATA[seedEnum]['texture'])
@@ -31,6 +35,7 @@ func decay(plant: StaticBody2D):
 	#print(deadTimer)
 	if deadTimer >= deathMax:
 		deadTimer = 0
+		emit_changed()
 		plant.queue_free()
 
 #Maybe ONE FUCKING DAY I will understand why we use return because

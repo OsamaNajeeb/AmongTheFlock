@@ -7,6 +7,7 @@ var moveSpeed: float = 40.0
 #This shit allows this beautiful lil guy stop near and tread towards you 24/7, good for meelee
 #combat
 var stopDistance: float = 10
+
 #This is basically agro range, we lowered it for fun
 var noticeDistance: float = 60 #orignal is 150
 var blobHP := 3:
@@ -66,6 +67,8 @@ func _physics_process(_delta: float) -> void:
 		animate()
 
 func animate():
+	if not $AnimationTree.active:
+		return
 	var directionAn = Vector2(round(direction.x),round(direction.y))
 	$AnimationTree.set("parameters/MoveStateMachine/Idle/blend_position", directionAn)
 	$AnimationTree.set("parameters/MoveStateMachine/Walk/blend_position", directionAn)
@@ -76,7 +79,8 @@ func animate():
 	
 func death():
 	moveSpeed = 0
-	$AnimationPlayer.current_animation = 'DEATH'
+	$AnimationTree.active = false
+	$AnimationPlayer.play('DEATH')
 
 func hit(tool: Enum.Tool):
 	if tool == Enum.Tool.SWORD:
@@ -85,4 +89,4 @@ func hit(tool: Enum.Tool):
 			#This is the main force of the knockback, this is the mastermind of all real world problems
 			knockBack = pushDirection * 200.0
 			$FlashSprite2D.flash()
-			#blobHP -= 1
+			blobHP -= 1
