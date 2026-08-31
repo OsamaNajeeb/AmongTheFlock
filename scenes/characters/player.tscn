@@ -1598,5 +1598,9 @@ zoom = Vector2(4, 4)
 offset_top = -7.5
 offset_bottom = 7.5
 
+[node name="PathFinding" type="Line2D" parent="." unique_id=18770474]
+top_level = true
+width = 2.0
+
 [connection signal="animation_finished" from="Animation/AnimationTree" to="." method="_on_animation_tree_animation_finished"]
 [connection signal="animation_started" from="Animation/AnimationTree" to="." method="_on_animation_tree_animation_started"]

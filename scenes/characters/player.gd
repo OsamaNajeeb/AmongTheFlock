@@ -2,6 +2,9 @@ extends CharacterBody2D
 #Ok so this calling vector to move in 2D
 var direction: Vector2
 
+#Declaring variable for mouse control
+var targetPosition: Vector2
+
 #The difference between var direction and lastDirection is that direction is current direction which
 #will be removed if character moves but lastDirection is saved direction of the player
 var lastDirection: Vector2
@@ -11,6 +14,8 @@ var speed = 125
 var canMove: bool = true
 
 signal diagnose
+
+var currentPATH: PackedVector2Array = []
 
 #Ok so my understand that these code run in sequence from top to bottom like any other, so 
 #this line code tells Machine/Godot, you don't have to call this code right now but until this
@@ -79,13 +84,39 @@ func getbasicinput():
 	
 	if Input.is_action_just_pressed("diagnose"):
 		diagnose.emit()
-		
+
+func _ready() -> void:
+	targetPosition = global_position
 
 func move():
+	if Input.is_action_just_pressed("MouseLeftClick"):
+		targetPosition = get_global_mouse_position()
+		currentPATH = get_parent().get_parent().getRoute(global_position,targetPosition)
+	
+	if currentPATH.size() > 0:
+		var visualPATH = currentPATH.duplicate()
+		visualPATH.insert(0, global_position)
+		$PathFinding.points = visualPATH
+	else:
+		$PathFinding.points = []
+	
+	if currentPATH.size() > 0:
+		var nextPoint = currentPATH[0]
+		
+		if global_position.distance_to(nextPoint) < 4.0:
+			currentPATH.remove_at(0)
+		else:
+			direction = global_position.direction_to(nextPoint)
+			velocity = direction * speed
+			move_and_slide()
+	else:
+		direction = Vector2.ZERO
+		velocity = Vector2.ZERO
+	
 	#Negative X (Left), Postive X (Right), Negative Y (Up) and Positive Y (Down)
-	direction = Input.get_vector("left","right","up","down")
-	velocity = direction * speed
-	move_and_slide()
+	#direction = Input.get_vector("left","right","up","down")
+	#velocity = direction * speed
+	#move_and_slide()
 	
 func animate():
 	if direction:

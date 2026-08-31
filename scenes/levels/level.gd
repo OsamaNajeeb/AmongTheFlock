@@ -4,6 +4,8 @@ var debugHitPos: Vector2
 var debugHitRadius: float = 0.0
 var showDebugHit: bool = false
 
+var aSTARGrid: AStarGrid2D = AStarGrid2D.new()
+
 @onready var daytransitionMaterial = $Overlay/CanvasLayer/DayTransitionLayer.material
 #So we added Day & Night effect in our game with help of gradient
 #if you Level node, you can see the gradient and make some adjustment
@@ -26,6 +28,55 @@ var usedCells: Array[Vector2i]
 #your current player, like where he is at and wtf is he doing and that's all
 #before game is started
 @onready var player: CharacterBody2D = $Objects/Player
+
+func _ready() -> void:
+	aSTARGrid.region = Rect2i(-150,-150,300,300)
+	aSTARGrid.cell_size = Vector2(Data.TILE_SIZE, Data.TILE_SIZE)
+	aSTARGrid.offset = Vector2(Data.TILE_SIZE / 2.0, Data.TILE_SIZE / 2.0)
+	aSTARGrid.diagonal_mode = AStarGrid2D.DIAGONAL_MODE_ONLY_IF_NO_OBSTACLES
+	aSTARGrid.update()
+	updateObstacles()
+
+func updateObstacles():
+	var  daBlocked = $Layers/SoilLayer.get_used_cells()
+	for cells in daBlocked:
+		var tileData = $Layers/SoilLayer.get_cell_tile_data(cells) as TileData
+		if tileData and tileData.get_custom_data("Blocked"):
+			aSTARGrid.set_point_solid(cells, true)
+			_spawn_debug_box(cells)
+	for object in get_tree().get_nodes_in_group('Objects'):
+		var gridCoord = Vector2i(int(object.position.x/Data.TILE_SIZE), int(object.position.y/Data.TILE_SIZE))
+		gridCoord.x += -1 if object.position.x < 0 else 0
+		gridCoord.y += -1 if object.position.y < 0 else 0
+		aSTARGrid.set_point_solid(gridCoord,true)
+		
+		
+func _spawn_debug_box(grid_coord: Vector2i):
+	var debugBox = ColorRect.new()
+	debugBox.color = Color(1,0,0,0.5)
+	debugBox.size = Vector2(Data.TILE_SIZE, Data.TILE_SIZE)
+	debugBox.position = Vector2(grid_coord) * Data.TILE_SIZE
+	$Overlay.add_child(debugBox)
+	queue_redraw()
+
+func getRoute(startPOS: Vector2, targetPOS: Vector2):
+	var startGRID = Vector2i(int(startPOS.x / Data.TILE_SIZE), int(startPOS.y / Data.TILE_SIZE))
+	startGRID.x += -1 if startPOS.x < 0 else 0
+	startGRID.y += -1 if startPOS.y < 0 else 0
+	
+	var targetGRID = Vector2i(int(targetPOS.x / Data.TILE_SIZE), int(targetPOS.y / Data.TILE_SIZE))
+	targetGRID.x += -1 if targetPOS.x < 0 else 0
+	targetGRID.y += -1 if targetPOS.y < 0 else 0
+	
+	if aSTARGrid.is_point_solid(targetGRID):
+			return []
+	
+	var daPath = aSTARGrid.get_point_path(startGRID, targetGRID)
+	
+	if daPath.size() > 1:
+		daPath.remove_at(0)
+	
+	return daPath
 
 #This is debugging code, we will use it as aim or where you little fucker 
 #is looking at or something
@@ -60,9 +111,14 @@ func _physics_process(_delta: float) -> void:
 		levelReset()
 		
 
-#func _draw():
-	#if showDebugHit:
-		#draw_circle(debugHitPos, debugHitRadius, Color(1,0,0,0.8))
+func _draw():
+	for x in range(aSTARGrid.region.position.x, aSTARGrid.region.end.x):
+		for y in range(aSTARGrid.region.position.y, aSTARGrid.region.end.y):
+			var gridCoord = Vector2i(x,y)
+			if aSTARGrid.is_point_solid(gridCoord):
+				var pixelPos = Vector2(gridCoord) * Data.TILE_SIZE
+				var rect = Rect2(pixelPos, Vector2(Data.TILE_SIZE, Data.TILE_SIZE))
+				draw_rect(rect, Color(1, 0,0, 0.5))
 
 #Enum.Tool is basically numbers, in enums.gd file, axe is 0, and seed is 5
 func _on_player_tool_use(tool: Enum.Tool, pos: Vector2) -> void:
